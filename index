@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Nightmare SMP</title>
+  <meta charset="UTF-8">
+  <style>
+    body {
+      background: #0b0b0b;
+      color: white;
+      font-family: Arial;
+      text-align: center;
+      padding-top: 100px;
+    }
+    h1 {
+      color: crimson;
+      font-size: 48px;
+    }
+    .btn {
+      background: crimson;
+      padding: 15px 30px;
+      color: white;
+      text-decoration: none;
+      border-radius: 6px;
+      display: inline-block;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Nightmare SMP</h1>
+  <p>A Hardcore Survival Experience</p>
+  <p><b>IP:</b> radio-centuries.gl.joinmc.link</p>
+
+  <a class="btn" href="https://discord.gg/YOURINVITE">Join Discord</a>
+
+</body>
+</html>
