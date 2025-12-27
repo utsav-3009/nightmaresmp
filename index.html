@@ -187,19 +187,19 @@
         <h1 class="hero-title">Wake Up In The Nightmare</h1>
         <p class="hero-subtitle">The most intense Minecraft Java Survival Experience.</p>
         <div class="ip-box" onclick="copyIP()">
-            <span id="server-ip">PLAY.NIGHTMARESMP.COM</span>
+            <span id="server-ip">radio-centuries.gl.joinmc.link</span>
             <p style="font-size: 0.7rem; margin-top: 5px;">(Click to copy)</p>
         </div>
     </header>
 
     <section id="features" class="features">
         <div class="feature-card">
-            <h3>Custom Enchants</h3>
-            <p>Go beyond Sharpness V with our unique nightmare-tier enchantments.</p>
+            <h3>Custom Events</h3>
+            <p>Go beyond Vanila Survival with our unique nightmare Survival Events.</p>
         </div>
         <div class="feature-card">
-            <h3>Player Economy</h3>
-            <p>Trade with players, set up shops, and dominate the server market.</p>
+            <h3>Dynamic Indian Economy Survival</h3>
+            <p>Trade with players, set up shops, and dominate the Indian server market.</p>
         </div>
         <div class="feature-card">
             <h3>Grief Protection</h3>
@@ -208,23 +208,58 @@
     </section>
 
     <section class="status-container">
-        <h2>Live Server Status</h2>
-        <div class="status-badge">● Online</div>
-        <p style="margin-top: 15px;">Players Online: 42 / 100</p>
-    </section>
+    <h2>Live Server Status</h2>
+    <div id="status-indicator" class="status-badge" style="background: #666;">● Loading...</div>
+    <p style="margin-top: 15px;">
+        Players Online: <span id="player-count" style="color: var(--primary-color); font-weight: bold;">0</span> / <span id="max-players">0</span>
+    </p>
+    <p id="server-version" style="font-size: 0.8rem; color: #888; margin-top: 5px;"></p>
+</section>
 
-    <footer>
-        <p>&copy; 2025 Nightmare SMP. Not an official Minecraft product.</p>
-    </footer>
+<script>
+    // Configuration: Change this to your actual IP
+    const SERVER_IP = "radio-centuries.gl.joinmc.link"; // Replace with "play.nightmaresmp.com"
 
-    <script>
-        function copyIP() {
-            const ip = document.getElementById('server-ip').innerText;
-            navigator.clipboard.writeText(ip);
-            alert("Server IP copied to clipboard! See you in-game.");
+    async function updateStatus() {
+        try {
+            const response = await fetch(`https://api.mcsrvstat.us/2/${SERVER_IP}`);
+            const data = await response.json();
+
+            const indicator = document.getElementById('status-indicator');
+            const playerCount = document.getElementById('player-count');
+            const maxPlayers = document.getElementById('max-players');
+            const version = document.getElementById('server-version');
+
+            if (data.online) {
+                indicator.innerText = "● Online";
+                indicator.style.background = "#28a745"; // Green
+                playerCount.innerText = data.players.online;
+                maxPlayers.innerText = data.players.max;
+                version.innerText = "Running on Version: " + data.version;
+            } else {
+                indicator.innerText = "● Offline";
+                indicator.style.background = "#ff0055"; // Red
+                playerCount.innerText = "0";
+                maxPlayers.innerText = "0";
+                version.innerText = "Server is currently down for maintenance.";
+            }
+        } catch (error) {
+            console.error("Error fetching server status:", error);
         }
-    </script>
+    }
 
+    // Run on page load
+    updateStatus();
+    // Refresh every 60 seconds
+    setInterval(updateStatus, 60000);
+
+    // Copy IP Function
+    function copyIP() {
+        const ipText = document.getElementById('server-ip').innerText;
+        navigator.clipboard.writeText(ipText);
+        alert("Nightmare SMP IP copied! See you in the abyss.");
+    }
+</script>
 </body>
 </html>
 
